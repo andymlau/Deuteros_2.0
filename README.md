@@ -14,13 +14,13 @@ A computer capable of connecting to the internet
 - Linux (to be added)
 
 ### FAQ
-1. Is Deuteros 2.0 free to use?
-Both Deuteros and Deuteros 2.0 are completely free to use and do not require MATLAB or a MATLAB license to run. Only the MATLAB Runtime library is necessary and this is automatically installed with the software.
+1. Is Deuteros 2.0 free to use?  
+Both Deuteros and Deuteros 2.0 are **completely free** to use and do not require MATLAB or a MATLAB license to run. Only the MATLAB Runtime library is necessary and this is automatically installed with the software.
 
-2. I don't have MATLAB, can I still use Deuteros 2.0? 
-Yes, Deuteros 2.0 does not need MATLAB, but only the MATLAB Runtime library which is automatically installed as long as you have an internet connection.
+2. I don't have MATLAB, can I still use Deuteros 2.0?  
+Yes, Deuteros 2.0 **does not need MATLAB**, but only the MATLAB Runtime library which is automatically installed as long as you have an internet connection.
 
-3. Can Deuteros 2.0 be installed on a machine that does not have an internet connection?
+3. Can Deuteros 2.0 be installed on a machine that does not have an internet connection?   
 Yes, the only difference is that you can download the MATLAB Runtime library (R2019b v9.7) manually and install this first before installing Deuteros 2.0. The Deuteros 2.0 installer should automaticaly identify the library on your system and skip the download.
 The library can be downloaded from the MathWorks website at: https://uk.mathworks.com/products/compiler/matlab-runtime.html
 

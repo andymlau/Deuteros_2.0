@@ -118,11 +118,13 @@ Deuteros 2.0 offers three statistical models that can be applied to differential
 2. Peptide
 3. Global (legacy)
 
-The hybrid method (Hageman & Weis, 2019, Anal Chem) combines both the global significance threshold (described in the kinetics plot section) with a Welch's t-test for significance testing.
+The **hybrid** method (Hageman & Weis, 2019, Anal Chem) combines both the global significance threshold (described in the kinetics plot section) with a Welch's t-test for significance testing.
 
-The peptide method is identical to the linear model described earlier in the kinetics plot section. 
+The **peptide** method is identical to the linear model described earlier in the kinetics plot section. 
 
-The global method is the original test detailed in Houde et al. 2011, J Pharma Sci. which calculates per-timepoint confidence intervals in the form of CI=0+/-X Da and applied to all peptides. It is the same as the significance test used in the original Deuteros (Lau et al., 2019, Bioinformatics). This statistical test is included for testing purposes and comparison purposes. Users are advised to use the improved hybrid or peptide significance tests.
+The **global** method is the original test detailed in Houde et al. 2011, J Pharma Sci. which calculates per-timepoint confidence intervals in the form of CI=0+/-X Da and applied to all peptides. It is the same as the significance test used in the original Deuteros (Lau et al., 2019, Bioinformatics). This statistical test is included for testing purposes and comparison purposes. Users are advised to use the improved hybrid or peptide significance tests.
+
+**Tip: Clicking on a datapoint in the Woods, Butterfly or Volcano plot will open a data tip window that displays more information about the peptide.**
 
 The following controls are included:
 

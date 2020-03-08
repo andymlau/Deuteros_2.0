@@ -1,15 +1,21 @@
 # Deuteros 2.0
-Last edit: 17/02/2020
+Last edit: 08/03/2020
 
 ![uptake_tab](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/uptake_tab.png)
+
+#### Changes and bug fixes
+
+Build 2020_03_08
+- Fixed error with residue redundancy calculation
+- Fixed bug where appending data to data table tab caused importing to crash
+- Added progress bar to import function
 
 #### Requirements for installation:
 A computer capable of connecting to the internet
 
-#### Currently supported operating systems:
-- Windows 10
-- MacOS
-- Linux (to be added)
+#### Current versions:
+- Windows 10 (Build: 2020_02_17)
+- MacOS (Build: 2020_03_08)
 
 ### FAQ
 1. Is Deuteros 2.0 free to use?  
@@ -24,9 +30,8 @@ The library can be downloaded from the MathWorks website at: https://uk.mathwork
 
 ### Installation
 
-Deuteros 2.0 can be installed by using one of the installers found in ```builds/Deuteros2_Win/for_redistribution``` for Windows or ```builds/Deuteros2_Mac/for_redistribution``` for Mac OS. 
+Deuteros 2.0 can be installed by using one of the installers found in ```builds```.
 If the MATLAB Runtime library is not found on your machine, the installer will download and install it automatically.
-
 
 ### Usage
 

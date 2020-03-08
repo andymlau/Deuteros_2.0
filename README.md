@@ -30,9 +30,8 @@ The library can be downloaded from the MathWorks website at: https://uk.mathwork
 
 ### Installation
 
-Deuteros 2.0 can be installed by using one of the installers found in ```builds/Deuteros2_Win/for_redistribution``` for Windows or ```builds/Deuteros2_Mac/for_redistribution``` for Mac OS. 
+Deuteros 2.0 can be installed by using one of the installers found in ```builds```.
 If the MATLAB Runtime library is not found on your machine, the installer will download and install it automatically.
-
 
 ### Usage
 

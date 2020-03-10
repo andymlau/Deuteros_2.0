@@ -5,6 +5,9 @@ Last edit: 08/03/2020
 
 #### Changes and bug fixes
 
+Build 2020_03_10
+- Made some minor changes with the progress bar to improve user experience
+
 Build 2020_03_08
 - Fixed error with residue redundancy calculation
 - Fixed bug where appending data to data table tab caused importing to crash

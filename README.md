@@ -149,8 +149,7 @@ The following controls are included:
 
 ```Statistics:
 Hybrid        Statistical filtering using global significance threshold + Welch's t-test method
-Peptide       Per-peptide statistical filtering
-Global        Statistical filtering using old Houde et al. method
+Peptide       Per-peptide statistical filtering using linear model
 None          No statistical filtering applied
 
 Plot type:

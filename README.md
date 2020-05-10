@@ -40,8 +40,8 @@ The library can be downloaded from the MathWorks website at: https://uk.mathwork
 4. The GUI of Deuteros 2.0 is blank when I open it (on both MacOS and Windows)
 We have noticed that this can occur when Deuteros 2.0 is installed and opened for the first time. Closing and opening it again seems to fixes this issue. 
 
-5. When I open Deuteros 2.0, I can't see the whole GUI
-
+5. When I open Deuteros 2.0, I can't see the whole GUI. 
+You may need to adjust the resolution of your display in order for Deuteros 2.0 to be displayed in its entirety. The GUI has a resolution of 1222x953. 
 
 ### Installation
 

@@ -7,6 +7,7 @@ Last edit: 10/05/2020
 
 Build 2020_05_10
 - Fixed bug with back-exchange correction. Previous equation incorrectly uses centroid m/z values for m, m0 and m100. Equation has been fixed to instead use centroid mass.
+- Fixed bug with kinetics plot where unique() was returning the wrong number of timepoints.
 - Added barcode plots to the 'Coverage Plot' section.
 - Fixed bug where exporting a coverage plot would save the plot in the wrong dimensions.
 

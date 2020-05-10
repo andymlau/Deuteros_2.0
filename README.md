@@ -20,12 +20,12 @@ Updated average residue redundancy calculation. Previously this was calculated o
 - Added progress bar to import function
 
 #### Current versions:
-- Windows 10 (Build: 2020_02_17)
-- MacOS (Build: 2020_03_08)
+- Windows 10 (Build: 2020_05_10)
+- MacOS (Build: 2020_05_10)
 
 ### Reference
 
-<To add>
+(to add)
 
 ### FAQ
 1. Is Deuteros 2.0 free to use?  

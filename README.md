@@ -1,24 +1,30 @@
 # Deuteros 2.0
-Last edit: 08/03/2020
+Last edit: 10/05/2020
 
 ![uptake_tab](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/uptake_tab.png)
 
 #### Changes and bug fixes
 
+Build 2020_05_10
+- Fixed bug with back-exchange correction. Previous equation incorrectly uses centroid m/z values for m, m0 and m100. Equation has been fixed to instead use centroid mass.
+- Added barcode plots to the 'Coverage Plot' section.
+- Fixed bug where exporting a coverage plot would save the plot in the wrong dimensions.
+
 Build 2020_03_10
 - Made some minor changes with the progress bar to improve user experience
 
 Build 2020_03_08
-- Fixed error with residue redundancy calculation
+Updated average residue redundancy calculation. Previously this was calculated over all residues regardless of whether there was coverage or not. The new calculation reports only the average residue redundancy for regions with coverage.
 - Fixed bug where appending data to data table tab caused importing to crash
 - Added progress bar to import function
-
-#### Requirements for installation:
-A computer capable of connecting to the internet
 
 #### Current versions:
 - Windows 10 (Build: 2020_02_17)
 - MacOS (Build: 2020_03_08)
+
+### Reference
+
+<To add>
 
 ### FAQ
 1. Is Deuteros 2.0 free to use?  
@@ -30,6 +36,12 @@ Yes, Deuteros 2.0 **does not need MATLAB**, but only the MATLAB Runtime library 
 3. Can Deuteros 2.0 be installed on a machine that does not have an internet connection?   
 Yes, the only difference is that you can download the MATLAB Runtime library (R2019b v9.7) manually and install this first before installing Deuteros 2.0. The Deuteros 2.0 installer should automaticaly identify the library on your system and skip the download.
 The library can be downloaded from the MathWorks website at: https://uk.mathworks.com/products/compiler/matlab-runtime.html
+
+4. The GUI of Deuteros 2.0 is blank when I open it (on both MacOS and Windows)
+We have noticed that this can occur when Deuteros 2.0 is installed and opened for the first time. Closing and opening it again seems to fixes this issue. 
+
+5. When I open Deuteros 2.0, I can't see the whole GUI
+
 
 ### Installation
 
@@ -54,22 +66,20 @@ The 'Uptake Plots' tab provides users with the ability to generate and review ki
 Under the 'Statistics' subpanel, users can apply a statistical model to their data to determine whether the deuterium uptake curves of States A and B are statistically different at a particular alpha value.
 Deuteros 2.0 offers two models: 'Global' and 'Peptide'.
 
-
 ##### Global filter:
 The global filter was taken from Hageman & Weis, 2019. Anal Chem, 91, 13, 8008-8016. The global filter calculates confidence intervals around 0 (no difference) using the pooled standard deviation calculated individually for States A and B for all timepoints. Peptides with an absolute uptake difference (DU_B-DU_A) of less than the absolute confidence interval (in Daltons) are regarded as not significant. The polarity of the uptake difference (positive/negative) is used to classify the peptide as exhibiting deprotection or protection due to the pertubation introduced in State B. 
 
-
 ##### Peptide filter: 
-The peptide filter is a novel hypothesis testing method developed in collaboration with Dr Jurgen Claesen. The peptide filter is applied to each peptide individually (as opposed to globally across all peptides) and uses a linear model to determine statistical significance:
+The peptide filter is applied to each peptide individually (as opposed to globally across all peptides) and uses multiple regression to fit deuterium uptake kinetics to a linear model to determine statistical significance:
 
-y_pi = X\beta_p+\epsilon_pi
+![lm_eq](https://latex.codecogs.com/gif.latex?D_%7Bij%7D%20%3D%20%5Cbeta_%7B0%7D&plus;%5Cbeta_%7Bs%7Ds_%7Bi%7D&plus;%5Cbeta_%7Bt%7Dt_%7Bj%7D&plus;%5Cbeta_%7Bst%7D%28s_%7Bi%7Dt_j%29&plus;%5Cepsilon_%7Bij%7D)
 
-Where y_p is a vector of n deuteration values, \beta_p is a vector of m unknown coefficients, X is a n-by-p matrix reflecting the experimental design and \epsilon_pi ~ N(0,\sigma^2_p) where \sigma^2_p is the population residual variance. The deuteration values of y_p can be derived from subtracting the average mass of the non-deuterated peptides from the deuterated peptide masses.
+Where D_ij is the deuterium content of a peptide from state s_i, at labelling time t_j and residual ε_ij  ~ N(0,σ_ij^2). The linear model tests if changes in the deuterium content of the peptide are associated with changes in the protein state (β_s), the deuteration time point (β_t), or both (β_st). 
 
-Selecting the peptide filter will spawn the 'Peptide Statistics' window which details various parameters of the linear model. The 'Peptide Statistics' window is divided into two tables, the top contains fitting parameters useful to determining whether uptake has taken place for State A. The bottom contains parameters to determine whether there is a difference between the uptake profiles of States A and B. The P-value of each comparison is shown along with its statistical significance shown in the 'Sig' column.
-Toggling between the alpha values of the kinetics plot controls will adjust the confidence intervals accordingly however does not affect the values reported in the Peptide Statistics window:
+Selecting the peptide filter will spawn the 'Peptide Statistics' window which details various parameters of the linear model. The 'Peptide Statistics' window is divided into two tables, the top contains fitting parameters useful to determining whether uptake has taken place for State A. The bottom contains parameters to determine whether there is a difference between the uptake profiles of States A and B. The P-value of each comparison is shown along with its statistical significance shown in the 'Sig' column. Toggling between the alpha values of the kinetics plot when the peptide significance test is selected, will adjust the confidence intervals accordingly, however does not affect the values reported in the Peptide Statistics window:
 
 ![statistics_window](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/statistics_window.png)
+
 
 #### Global Plots Tab
 
@@ -118,16 +128,19 @@ The Advanced Plot section generates one of three major plot types:
 
 ![typesOfPlots](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/typesOfPlots.png)
 
-Deuteros 2.0 offers three statistical models that can be applied to differential HDX-MS data:
-1. Hybrid
-2. Peptide
-3. Global (legacy)
+Deuteros 2.0 offers two statistical models that can be applied to differential HDX-MS data:
+1. Peptide significance test using our linear model
+2. Hybrid significance test from Hageman & Weis, 2019 (Anal. Chem.).
 
-The **hybrid** method (Hageman & Weis, 2019, Anal Chem) combines both the global significance threshold (described in the kinetics plot section) with a Welch's t-test for significance testing.
+**Peptide significance test**
+Deuteros 2.0 calculates the p-values between each pair of peptides at each timepoint. The probability of detecting false positives are then controlled using for multiple testing using the Benjamini-Hochberg procedure. The False Discovery Rate controlling method adjusts the p-value of each test using the number of hypothesis tested, m, and the ordered rank of the p-value, i (in ascending order): 
 
-The **peptide** method is identical to the linear model described earlier in the kinetics plot section. 
+![p_eq](https://latex.codecogs.com/gif.latex?p*%20%3D%20p%20%5Ctimes%28m/i%29)
 
-The **global** method is the original test detailed in Houde et al. 2011, J Pharma Sci. which calculates per-timepoint confidence intervals in the form of CI=0+/-X Da and applied to all peptides. It is the same as the significance test used in the original Deuteros (Lau et al., 2019, Bioinformatics). This statistical test is included for testing purposes and comparison purposes. Users are advised to use the improved hybrid or peptide significance tests.
+The null hypothesis is rejected on the basis that the adjusted p-value is less than the significance level. 
+
+**Hybrid significance test**
+The hybrid method (Hageman & Weis, 2019, Anal Chem) combines both the global significance threshold (described in the kinetics plot section) with a Welch's t-test for significance testing. Additional information regarding this test can be found in the referenced article. 
 
 **Tip: Clicking on a datapoint in the Woods, Butterfly or Volcano plot will open a data tip window that displays more information about the peptide.**
 

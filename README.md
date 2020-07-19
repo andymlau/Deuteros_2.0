@@ -25,7 +25,7 @@ Updated average residue redundancy calculation. Previously this was calculated o
 
 ### Reference
 
-(to add)
+Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2020. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. arXiv: 2005.08380. https://arxiv.org/abs/2005.08380
 
 ### FAQ
 1. Is Deuteros 2.0 free to use?  
@@ -44,14 +44,22 @@ We have noticed that this can occur when Deuteros 2.0 is installed and opened fo
 5. When I open Deuteros 2.0, I can't see the whole GUI. 
 You may need to adjust the resolution of your display in order for Deuteros 2.0 to be displayed in its entirety. The GUI has a resolution of 1222x953. 
 
+6. Is ion mobility functionality supported? (or only the retention time and m/z dimensions)?
+
+As the DynamX cluster output does not include ion mobility metrics regardless of whether mobility is used or not during acquisition, Deuteros 2.0 does not make use of this data type. This is also to say that Deuteros 2.0 does not differentiate between data collected with or without ion mobility - both are processed identically.
+
 ### Installation
 
 Deuteros 2.0 can be installed by using one of the installers found in ```builds```.
 If the MATLAB Runtime library is not found on your machine, the installer will download and install it automatically.
 
-### Usage
+### Data input and compatibility
 
-Input: Deuteros 2.0 takes as input the 'cluster'-style output of DynamX HDX-MS software (Waters Corporation). The cluster file contains peptide deuterium uptake data at the replicate level for all proteins and states held within a DynamX session file. 
+The intended input to Deuteros 2.0 is the 'cluster' file that is output from Waters DynamX instrumentation, while the original Deuteros used 'state' and 'difference' files from DynamX. The cluster file contains peptide deuterium uptake data at the replicate level for all proteins and states held within a DynamX session file. 
+
+Deuteros 2.0 is not compatible with output data types from other vendors such as instruments from Thermo Fisher Scientific, however as the cluster file is a readable comma separated values (csv) format, providing users can format their data into a suitable format, this file would be readable by Deuteros 2.0. The format of the cluster input file can seen in the provided example.
+
+### Usage
 
 1. Open Deuteros, click ```Browse``` in the 'Data Import' box and navigate to the cluster file. A list of proteins and states found in the cluster file will populate the ```Protein``` and ```State A``` dropdown menus.
 2. If performing a differential comparison of two experimental states, select the desired states using the ```State A``` and ```State B``` dropdowns. Note: Differential comparisons are performed as State B-State A, e.g. Holo-Apo or Mutant-Wildtype
@@ -60,11 +68,29 @@ Input: Deuteros 2.0 takes as input the 'cluster'-style output of DynamX HDX-MS s
 
 The summary box contains a basic summary of the peptide data within states A and B, including the number of timepoints, whether back-exchange controls have been applied and if so, their statistics, details of the peptide population, replicate quality, etc. This summary follows the guidelines listed in Masson et al. 2019. Nature Methods, 16, 595-602 and should be prepared and included with any HDX-MS results.
 
+#### Back-exchange correction
+
+Deuteros 2.0 can optionally implement back-exchange correction of HDX-MS data using equations 1.10 and 1.11 in Masson et al. 2019. Nature Methods, 16, 595-602. Back-exchange correction can be performed for single or differential analysis. To do this, users can supply the software with one or two control states (one for each of State A and B) via the dropdown menus adjacent to the state A and B menus during data import. Back-exchange control states need to be acquired by the users and included within the cluster file along with the data to analyse. In essence, the control data contains a list of maximally labelled peptides which are use to calculate the degree of back exchange experienced by each peptide. 
+
+The degree of back-exchange is calculated using: 
+
+<p align="center"><img src="https://latex.codecogs.com/svg.latex?Back-exchange=\(1-\frac{m_{100%}-m_{0%}}{N\times%20D_{frac}}\)" /></p>
+
+Specifically, back-exchange control data supplies the mass of the maximally labelled peptide m_100%. The mass of the non-deuterated control peptide m_0% is taken as the mass of the reference peptide, the theoretical maximum number of backbone amides N, is directly available as the 'MaxUptake' column of the cluster file, and D_frac, the fraction of deuterium within the labelling buffer, is a user-supplied constant. 
+
+The degree of back-exchange for each peptide is compiled into a table and used for comparison against each peptide in states A and B. The corrected deuterium uptake of each peptide D_corr is then adjusted from its observed mass m, as:
+
+<p align="center"><img src="https://latex.codecogs.com/svg.latex?D_{corr}=\frac{(m-m_{0%})}{(m_{100%}-m_{0%})}" /></p>
+
+Should peptides be found in States A or B which do not have an associated entry within the back-exchange control table, and are therefore not correctable. Should this occur, a warning dialog spawns to inform the user and non-corrected peptides are withheld from any downstream analysis since they cannot be corrected and inclusion would lead to misleading results. A table of the control data and corrected peptide are available under the 'data tables' tab of the software. 
+
+The mean and interquartile range of back-exchange across each state is reported within the data summary box in the top right of the GUI.
 
 #### Uptake Plots Tab
 The 'Uptake Plots' tab provides users with the ability to generate and review kinetics plots for individual peptides for one or two states. Clicking on peptides listed in the 'Peptide Tree' will show the kinetics plot for the particular peptide. The controls in the bottom panel provide plotting options such as switching to a log(time) axis and toggling between various plot elements. 
 
 Under the 'Statistics' subpanel, users can apply a statistical model to their data to determine whether the deuterium uptake curves of States A and B are statistically different at a particular alpha value.
+
 Deuteros 2.0 offers two models: 'Global' and 'Peptide'.
 
 ##### Global filter:
@@ -73,14 +99,13 @@ The global filter was taken from Hageman & Weis, 2019. Anal Chem, 91, 13, 8008-8
 ##### Peptide filter: 
 The peptide filter is applied to each peptide individually (as opposed to globally across all peptides) and uses multiple regression to fit deuterium uptake kinetics to a linear model to determine statistical significance:
 
-![lm_eq](https://latex.codecogs.com/gif.latex?D_%7Bij%7D%20%3D%20%5Cbeta_%7B0%7D&plus;%5Cbeta_%7Bs%7Ds_%7Bi%7D&plus;%5Cbeta_%7Bt%7Dt_%7Bj%7D&plus;%5Cbeta_%7Bst%7D%28s_%7Bi%7Dt_j%29&plus;%5Cepsilon_%7Bij%7D)
+<p align="center"><img src="https://latex.codecogs.com/svg.latex?D_{ij}%20=%20\beta_{0}+\beta_{s}s_{i}+\beta_{t}t_{j}+\beta_{st}(s_{i}t_{j})+\epsilon_{ij}" /></p>
 
 Where D_ij is the deuterium content of a peptide from state s_i, at labelling time t_j and residual ε_ij  ~ N(0,σ_ij^2). The linear model tests if changes in the deuterium content of the peptide are associated with changes in the protein state (β_s), the deuteration time point (β_t), or both (β_st). 
 
 Selecting the peptide filter will spawn the 'Peptide Statistics' window which details various parameters of the linear model. The 'Peptide Statistics' window is divided into two tables, the top contains fitting parameters useful to determining whether uptake has taken place for State A. The bottom contains parameters to determine whether there is a difference between the uptake profiles of States A and B. The P-value of each comparison is shown along with its statistical significance shown in the 'Sig' column. Toggling between the alpha values of the kinetics plot when the peptide significance test is selected, will adjust the confidence intervals accordingly, however does not affect the values reported in the Peptide Statistics window:
 
 ![statistics_window](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/statistics_window.png)
-
 
 #### Global Plots Tab
 
@@ -136,7 +161,7 @@ Deuteros 2.0 offers two statistical models that can be applied to differential H
 **Peptide significance test**
 Deuteros 2.0 calculates the p-values between each pair of peptides at each timepoint. The probability of detecting false positives are then controlled using for multiple testing using the Benjamini-Hochberg procedure. The False Discovery Rate controlling method adjusts the p-value of each test using the number of hypothesis tested, m, and the ordered rank of the p-value, i (in ascending order): 
 
-![p_eq](https://latex.codecogs.com/gif.latex?p*%20%3D%20p%20%5Ctimes%28m/i%29)
+<p align="center"><img src="https://latex.codecogs.com/svg.latex?p^*=p%20\times%20(m/i)" /></p>
 
 The null hypothesis is rejected on the basis that the adjusted p-value is less than the significance level. 
 

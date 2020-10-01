@@ -25,11 +25,11 @@ Updated average residue redundancy calculation. Previously this was calculated o
 
 ### Reference
 
-Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2020. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. arXiv: 2005.08380. https://arxiv.org/abs/2005.08380
+Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2020. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
 
 ### FAQ
 1. Is Deuteros 2.0 free to use?  
-Both Deuteros and Deuteros 2.0 are **completely free** to use and do not require MATLAB or a MATLAB license to run. Only the MATLAB Runtime library is necessary and this is automatically installed with the software.
+Both Deuteros and Deuteros 2.0 availabel under the Apache 2.0 license and are **completely free** to use and do not require MATLAB or a MATLAB license to run. Only the MATLAB Runtime library is necessary and this is automatically installed with the software.
 
 2. I don't have MATLAB, can I still use Deuteros 2.0?  
 Yes, Deuteros 2.0 **does not need MATLAB**, but only the MATLAB Runtime library which is automatically installed as long as you have an internet connection.

@@ -287,5 +287,5 @@ All figures generated and exported from Deuteros 2.0 are vector images and can b
 The following test files have been supplied in this repository in ```/builds/examples/```
 ```
 backExchange.csv      Cluster file contains 1 protein with 3 states: Bound, Unbound and Control, residue start and end are 1 and 90 respectively.
-cluster.csv           Cluster file contains 1 protein with 2 states: Mutant, Wildtype, residue start and end are 1 and 420 respectively.
+cluster.csv           Cluster file contains 1 protein with 2 states: Mutant, Wildtype, residue start and end are 1 and 491 respectively.
 ```

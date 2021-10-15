@@ -5,6 +5,11 @@ Last edit: 10/05/2020
 
 #### Changes and bug fixes
 
+Build 2021_10_14
+- Added additional checks to ensure that the same charge state is used for differential comparisons
+- Fixed plot scaling for butterfly plots when the number of peptides is small
+- Added file conversion tool that handles conversion of files from HDExaminer into the DynamX cluster format. Standalone version of the tool is also available as a [Colab notebook](https://github.com/andymlau/File-conversion-for-HDX)
+
 Build 2020_05_10
 - Fixed bug with back-exchange correction. Previous equation incorrectly uses centroid m/z values for m, m0 and m100. Equation has been fixed to instead use centroid mass.
 - Fixed bug with kinetics plot where unique() was returning the wrong number of timepoints.

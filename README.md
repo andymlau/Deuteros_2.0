@@ -29,6 +29,7 @@ Updated average residue redundancy calculation. Previously this was calculated o
 - MacOS (Build: 2020_05_10)
 
 ### Reference
+Please cite the following paper if Deuteros was helpful for your analysis:
 
 Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2020. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
 

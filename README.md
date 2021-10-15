@@ -31,7 +31,7 @@ Updated average residue redundancy calculation. Previously this was calculated o
 ### Reference
 Please cite the following paper if Deuteros was helpful for your analysis:
 
-Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2020. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
+Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
 
 ### FAQ
 1. Is Deuteros 2.0 free to use?  

@@ -1,5 +1,5 @@
 # Deuteros 2.0
-Last edit: 10/05/2020
+Last edit: 13/12/2021
 
 ![uptake_tab](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/uptake_tab.png)
 
@@ -38,24 +38,23 @@ Please cite the following paper if Deuteros was helpful for your analysis:
 Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
 
 ### FAQ
-1. Is Deuteros 2.0 free to use?  
+1. _Is Deuteros 2.0 free to use?_  
 Both Deuteros and Deuteros 2.0 availabel under the Apache 2.0 license and are **completely free** to use and do not require MATLAB or a MATLAB license to run. Only the MATLAB Runtime library is necessary and this is automatically installed with the software.
 
-2. I don't have MATLAB, can I still use Deuteros 2.0?  
+2. _I don't have MATLAB, can I still use Deuteros 2.0?_  
 Yes, Deuteros 2.0 **does not need MATLAB**, but only the MATLAB Runtime library which is automatically installed as long as you have an internet connection.
 
-3. Can Deuteros 2.0 be installed on a machine that does not have an internet connection?   
+3. _Can Deuteros 2.0 be installed on a machine that does not have an internet connection?_  
 Yes, the only difference is that you can download the MATLAB Runtime library (R2019b v9.7) manually and install this first before installing Deuteros 2.0. The Deuteros 2.0 installer should automaticaly identify the library on your system and skip the download.
 The library can be downloaded from the MathWorks website at: https://uk.mathworks.com/products/compiler/matlab-runtime.html
 
-4. The GUI of Deuteros 2.0 is blank when I open it (on both MacOS and Windows)
+4. _The GUI of Deuteros 2.0 is blank when I open it (on both MacOS and Windows)_  
 We have noticed that this can occur when Deuteros 2.0 is installed and opened for the first time. Closing and opening it again seems to fixes this issue. 
 
-5. When I open Deuteros 2.0, I can't see the whole GUI. 
+5. _When I open Deuteros 2.0, I can't see the whole GUI._  
 You may need to adjust the resolution of your display in order for Deuteros 2.0 to be displayed in its entirety. The GUI has a resolution of 1222x953. 
 
-6. Is ion mobility functionality supported? (or only the retention time and m/z dimensions)?
-
+6. _Is ion mobility functionality supported? (or only the retention time and m/z dimensions)?_  
 As the DynamX cluster output does not include ion mobility metrics regardless of whether mobility is used or not during acquisition, Deuteros 2.0 does not make use of this data type. This is also to say that Deuteros 2.0 does not differentiate between data collected with or without ion mobility - both are processed identically.
 
 ### Installation

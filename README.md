@@ -3,6 +3,10 @@ Last edit: 10/05/2020
 
 ![uptake_tab](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/uptake_tab.png)
 
+#### Current versions:
+- Windows 10 (Build: 2021_12_13)
+- MacOS (Build: 2021_12_13)
+
 #### Changes and bug fixes
 
 Build 2021_12_13
@@ -27,10 +31,6 @@ Build 2020_03_08
 Updated average residue redundancy calculation. Previously this was calculated over all residues regardless of whether there was coverage or not. The new calculation reports only the average residue redundancy for regions with coverage.
 - Fixed bug where appending data to data table tab caused importing to crash
 - Added progress bar to import function
-
-#### Current versions:
-- Windows 10 (Build: 2020_05_10)
-- MacOS (Build: 2020_05_10)
 
 ### Reference
 Please cite the following paper if Deuteros was helpful for your analysis:

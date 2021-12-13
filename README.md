@@ -5,6 +5,10 @@ Last edit: 10/05/2020
 
 #### Changes and bug fixes
 
+Build 2021_12_13
+- Fixed bug where plots could not be exported for Advanced plots.
+- Fixed bug where exported figures were being saved as .svg files but were not vector images. 
+
 Build 2021_10_14
 - Added additional checks to ensure that the same charge state is used for differential comparisons
 - Fixed plot scaling for butterfly plots when the number of peptides is small

@@ -1,5 +1,5 @@
 # Deuteros 2.0
-Last edit: 13/12/2021
+Last edit: 14/02/2022
 
 ![uptake_tab](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/uptake_tab.png)
 
@@ -52,7 +52,7 @@ The library can be downloaded from the MathWorks website at: https://uk.mathwork
 We have noticed that this can occur when Deuteros 2.0 is installed and opened for the first time. Closing and opening it again seems to fixes this issue. 
 
 5. _When I open Deuteros 2.0, I can't see the whole GUI._  
-You may need to adjust the resolution of your display in order for Deuteros 2.0 to be displayed in its entirety. The GUI has a resolution of 1222x953. 
+You may need to adjust the resolution of your display in order for Deuteros 2.0 to be displayed in its entirety. The GUI has a resolution of 1222x953. On Windows systems, you may need to play around with the scaling of the display in order to show the Deuteros GUI properly. You can change the display scale in Windows via: Settings > Display > Scale and Layout > Change the size of text, apps, and other items > set to e.g. 100%. 
 
 6. _Is ion mobility functionality supported? (or only the retention time and m/z dimensions)?_  
 As the DynamX cluster output does not include ion mobility metrics regardless of whether mobility is used or not during acquisition, Deuteros 2.0 does not make use of this data type. This is also to say that Deuteros 2.0 does not differentiate between data collected with or without ion mobility - both are processed identically.

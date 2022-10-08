@@ -1,41 +1,14 @@
 # Deuteros 2.0
-Last edit: 14/02/2022
 
-![uptake_tab](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/uptake_tab.png)
+Deuteros is an app designed for analysing and visualising data from hydrogen deuterium exchange mass spectrometry (HDX-MS) experiments, including quickly analysing peptide-level uptake kinetics, differential analysis, statistical testing via Woods and Volcano plots, back exchange correction and exporting to molecular graphics. 
 
-#### Current versions:
-- Windows 10 (Build: 2021_12_13)
-- MacOS (Build: 2021_12_13)
+Note: As Deuteros was developed during my PhD which ended in 2019, the app is no longer actively maintained and feature requests/bug fixes might take some time to be implemented. 
 
-#### Changes and bug fixes
-
-Build 2021_12_13
-- Fixed bug where plots could not be exported for Advanced plots.
-- Fixed bug where exported figures were being saved as .svg files but were not vector images. 
-
-Build 2021_10_14
-- Added additional checks to ensure that the same charge state is used for differential comparisons
-- Fixed plot scaling for butterfly plots when the number of peptides is small
-- Added file conversion tool that handles conversion of files from HDExaminer into the DynamX cluster format. Standalone version of the tool is also available as a [Colab notebook](https://github.com/andymlau/File-conversion-for-HDX)
-
-Build 2020_05_10
-- Fixed bug with back-exchange correction. Previous equation incorrectly uses centroid m/z values for m, m0 and m100. Equation has been fixed to instead use centroid mass.
-- Fixed bug with kinetics plot where unique() was returning the wrong number of timepoints.
-- Added barcode plots to the 'Coverage Plot' section.
-- Fixed bug where exporting a coverage plot would save the plot in the wrong dimensions.
-
-Build 2020_03_10
-- Made some minor changes with the progress bar to improve user experience
-
-Build 2020_03_08
-Updated average residue redundancy calculation. Previously this was calculated over all residues regardless of whether there was coverage or not. The new calculation reports only the average residue redundancy for regions with coverage.
-- Fixed bug where appending data to data table tab caused importing to crash
-- Added progress bar to import function
-
-### Reference
-Please cite the following paper if Deuteros was helpful for your analysis:
+This repo is for the second iteration of Deuteros, Deuteros 2.0, which greatly improved on features set out in the first version. To learn more about the app, check out the reference below: 
 
 Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
+
+![uptake_tab](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/uptake_tab.png)
 
 ### FAQ
 1. _Is Deuteros 2.0 free to use?_  
@@ -57,31 +30,38 @@ You may need to adjust the resolution of your display in order for Deuteros 2.0 
 6. _Is ion mobility functionality supported? (or only the retention time and m/z dimensions)?_  
 As the DynamX cluster output does not include ion mobility metrics regardless of whether mobility is used or not during acquisition, Deuteros 2.0 does not make use of this data type. This is also to say that Deuteros 2.0 does not differentiate between data collected with or without ion mobility - both are processed identically.
 
-### Installation
+### Reference
+Please cite the following paper if Deuteros was helpful for your analysis:
 
-Deuteros 2.0 can be installed by using one of the installers found in ```builds```.
-If the MATLAB Runtime library is not found on your machine, the installer will download and install it automatically.
+Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
 
-### Data input and compatibility
+## Installation
+
+Deuteros 2.0 can be installed by using one of the zipped installers (`.app.zip` for MacOS and `.exe.zip` for Windows). The installer will need to be unzipped before they can be run.
+The app requires the MATLAB Runtime library - if this is not found on your machine, a copy will be downloaded and installed automatically.
+
+## Data input and compatibility
 
 The intended input to Deuteros 2.0 is the 'cluster' file that is output from Waters DynamX instrumentation, while the original Deuteros used 'state' and 'difference' files from DynamX. The cluster file contains peptide deuterium uptake data at the replicate level for all proteins and states held within a DynamX session file. 
 
 Deuteros 2.0 is not compatible with output data types from other vendors such as instruments from Thermo Fisher Scientific, however as the cluster file is a readable comma separated values (csv) format, providing users can format their data into a suitable format, this file would be readable by Deuteros 2.0. The format of the cluster input file can seen in the provided example.
 
-### Usage
+In v2.3.1, a conversion tool was added to format HDExaminer files into the DynamX cluster format. A standalone version is also available here as a [Colab notebook](https://github.com/andymlau/File-conversion-for-HDX).
+
+## Usage
 
 1. Open Deuteros, click ```Browse``` in the 'Data Import' box and navigate to the cluster file. A list of proteins and states found in the cluster file will populate the ```Protein``` and ```State A``` dropdown menus.
 2. If performing a differential comparison of two experimental states, select the desired states using the ```State A``` and ```State B``` dropdowns. Note: Differential comparisons are performed as State B-State A, e.g. Holo-Apo or Mutant-Wildtype
-3. Enter the *percentage deuterium* during experimental labelling and the *start and end residues* to the relevant edit boxes. 
+3. Enter the *percentage deuterium* during experimental labelling and the *start and end residues* to the relevant edit boxes. The deuterium percentage does not need to be altered unless back exchange data is provided for correction.
 4. Press ```Import``` Note: depending on the cluster file size, import may take a while to complete. The 'Peptide Tree' and summary box in the top right of Deuteros 2.0 will populate when import is complete.
 
 The summary box contains a basic summary of the peptide data within states A and B, including the number of timepoints, whether back-exchange controls have been applied and if so, their statistics, details of the peptide population, replicate quality, etc. This summary follows the guidelines listed in Masson et al. 2019. Nature Methods, 16, 595-602 and should be prepared and included with any HDX-MS results.
 
-#### Back-exchange correction
+### Back-exchange correction
 
-Deuteros 2.0 can optionally implement back-exchange correction of HDX-MS data using equations 1.10 and 1.11 in Masson et al. 2019. Nature Methods, 16, 595-602. Back-exchange correction can be performed for single or differential analysis. To do this, users can supply the software with one or two control states (one for each of State A and B) via the dropdown menus adjacent to the state A and B menus during data import. Back-exchange control states need to be acquired by the users and included within the cluster file along with the data to analyse. In essence, the control data contains a list of maximally labelled peptides which are use to calculate the degree of back exchange experienced by each peptide. 
+Deuteros 2.0 can optionally implement back exchange correction of HDX-MS data using equations 1.10 and 1.11 in Masson et al. 2019. Nature Methods, 16, 595-602. Back exchange correction can be performed for single or differential analysis. To do this, users can supply the software with one or two control states (one for each of State A and B) via the dropdown menus adjacent to the state A and B menus during data import. Back exchange control states need to be acquired by the users and included within the cluster file along with the data to analyse. The control data contains a list of maximally labelled peptides which are use to calculate the degree of back exchange experienced by each peptide. 
 
-The degree of back-exchange is calculated using: 
+The degree of back exchange is calculated using: 
 
 <p align="center"><img src="https://latex.codecogs.com/svg.latex?Back-exchange=\(1-\frac{m_{100%}-m_{0%}}{N\times%20D_{frac}}\)" /></p>
 
@@ -95,17 +75,17 @@ Should peptides be found in States A or B which do not have an associated entry 
 
 The mean and interquartile range of back-exchange across each state is reported within the data summary box in the top right of the GUI.
 
-#### Uptake Plots Tab
+### Uptake Plots Tab
 The 'Uptake Plots' tab provides users with the ability to generate and review kinetics plots for individual peptides for one or two states. Clicking on peptides listed in the 'Peptide Tree' will show the kinetics plot for the particular peptide. The controls in the bottom panel provide plotting options such as switching to a log(time) axis and toggling between various plot elements. 
 
 Under the 'Statistics' subpanel, users can apply a statistical model to their data to determine whether the deuterium uptake curves of States A and B are statistically different at a particular alpha value.
 
 Deuteros 2.0 offers two models: 'Global' and 'Peptide'.
 
-##### Global filter:
+#### Global filter:
 The global filter was taken from Hageman & Weis, 2019. Anal Chem, 91, 13, 8008-8016. The global filter calculates confidence intervals around 0 (no difference) using the pooled standard deviation calculated individually for States A and B for all timepoints. Peptides with an absolute uptake difference (DU_B-DU_A) of less than the absolute confidence interval (in Daltons) are regarded as not significant. The polarity of the uptake difference (positive/negative) is used to classify the peptide as exhibiting deprotection or protection due to the pertubation introduced in State B. 
 
-##### Peptide filter: 
+#### Peptide filter: 
 The peptide filter is applied to each peptide individually (as opposed to globally across all peptides) and uses multiple regression to fit deuterium uptake kinetics to a linear model to determine statistical significance:
 
 <p align="center"><img src="https://latex.codecogs.com/svg.latex?D_{ij}%20=%20\beta_{0}+\beta_{s}s_{i}+\beta_{t}t_{j}+\beta_{st}(s_{i}t_{j})+\epsilon_{ij}" /></p>
@@ -123,7 +103,7 @@ The global plots tab contains three main visualisation facilities:
 2. Advanced plots (plots with statistics)
 3. Export to molecular graphics
 
-##### Coverage Plot
+#### Coverage Plot
 The coverage plot can generate linear graphical representations of the peptide ensemble for States A and B. The following controls are included:
 
 ```Plot type:
@@ -154,8 +134,7 @@ Plot          Generate plot
 Export        Spawn window for saving plot as figure
 ```
 
-
-##### Advanced Plot
+#### Advanced Plot
 The Advanced Plot section generates one of three major plot types: 
 1. Woods plot
 2. Butterfly plot
@@ -210,7 +189,7 @@ Plot          Generate plot
 Export        Spawn window for saving plot as figure
 ```
 
-##### Export to Molecular Graphics
+#### Export to Molecular Graphics
 
 Data shown in the coverage and advanced plot sections can be exported to molecular graphics to visualise results on 3D structures or models of proteins of interest. Currently PyMOL and Chimera are supported. 
 
@@ -281,7 +260,6 @@ Data can be exported from Waters DynamX software in two formats - cluster and st
 ![state_format](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/state_format.png)
 
 Deuteros 2.0 imports data in the cluster file, which contains replicate-level data and alternative charge states for each peptide timepoint (e.g. Raw Cluster data table tab. The cluster data is converted to a state-like format using a custom algorithm which also filters out alternative charge states. The output from this is a state-like representation of the original data which contains no contributions by alternative charge states and which retains the original replicate values (e.g. State A and State B data table tab). For differential comparisons, custom functions extract only the common peptides between State A and B, followed by calculation of the difference between the two states (in the direction B-A). 
-
 
 ### Output Figures
 

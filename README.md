@@ -10,7 +10,7 @@ Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-lev
 
 ![uptake_tab](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/uptake_tab.png)
 
-### FAQ
+#### FAQ
 1. _Is Deuteros 2.0 free to use?_  
 Both Deuteros and Deuteros 2.0 availabel under the Apache 2.0 license and are **completely free** to use and do not require MATLAB or a MATLAB license to run. Only the MATLAB Runtime library is necessary and this is automatically installed with the software.
 
@@ -30,18 +30,18 @@ You may need to adjust the resolution of your display in order for Deuteros 2.0 
 6. _Is ion mobility functionality supported? (or only the retention time and m/z dimensions)?_  
 As the DynamX cluster output does not include ion mobility metrics regardless of whether mobility is used or not during acquisition, Deuteros 2.0 does not make use of this data type. This is also to say that Deuteros 2.0 does not differentiate between data collected with or without ion mobility - both are processed identically.
 
-### Reference
+#### Reference
 Please cite the following paper if Deuteros was helpful for your analysis:
 
 Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
 
-## Installation
+### Installation
 
 To install a version of Deuteros, download the [latest](https://github.com/andymlau/Deuteros_2.0/releases/latest) release from the Github sidebar. 
 
 If the system running Deuteros already has an up to date version of MATLAB, run the non-installer files (after unzipping), else use the installers for mac or windows to install a copy of the runtime automatically. 
 
-## Usage
+### Usage
 
 1. Open Deuteros, click ```Browse``` in the 'Data Import' box and navigate to the cluster file. A list of proteins and states found in the cluster file will populate the ```Protein``` and ```State A``` dropdown menus.
 2. If performing a differential comparison of two experimental states, select the desired states using the ```State A``` and ```State B``` dropdowns. Note: Differential comparisons are performed as State B-State A, e.g. Holo-Apo or Mutant-Wildtype
@@ -50,7 +50,7 @@ If the system running Deuteros already has an up to date version of MATLAB, run 
 
 The summary box contains a basic summary of the peptide data within states A and B, including the number of timepoints, whether back-exchange controls have been applied and if so, their statistics, details of the peptide population, replicate quality, etc. This summary follows the guidelines listed in Masson et al. 2019. Nature Methods, 16, 595-602 and should be prepared and included with any HDX-MS results.
 
-## Data input and compatibility
+#### Data input and compatibility
 
 The intended input to Deuteros 2.0 is the 'cluster' file that is output from Waters DynamX instrumentation, while the original Deuteros used 'state' and 'difference' files from DynamX. The cluster file contains peptide deuterium uptake data at the replicate level for all proteins and states held within a DynamX session file. 
 
@@ -58,7 +58,7 @@ Deuteros 2.0 is not compatible with output data types from other vendors such as
 
 In v2.3.1, a conversion tool was added to format HDExaminer files into the DynamX cluster format. A standalone version is also available here as a [Colab notebook](https://github.com/andymlau/File-conversion-for-HDX).
 
-### Back-exchange correction
+#### Back-exchange correction
 
 Deuteros 2.0 can optionally implement back exchange correction of HDX-MS data using equations 1.10 and 1.11 in Masson et al. 2019. Nature Methods, 16, 595-602. Back exchange correction can be performed for single or differential analysis. To do this, users can supply the software with one or two control states (one for each of State A and B) via the dropdown menus adjacent to the state A and B menus during data import. Back exchange control states need to be acquired by the users and included within the cluster file along with the data to analyse. The control data contains a list of maximally labelled peptides which are use to calculate the degree of back exchange experienced by each peptide. 
 
@@ -76,14 +76,14 @@ Should peptides be found in States A or B which do not have an associated entry 
 
 The mean and interquartile range of back-exchange across each state is reported within the data summary box in the top right of the GUI.
 
-### Uptake Plots Tab
+#### Uptake Plots Tab
 The 'Uptake Plots' tab provides users with the ability to generate and review kinetics plots for individual peptides for one or two states. Clicking on peptides listed in the 'Peptide Tree' will show the kinetics plot for the particular peptide. The controls in the bottom panel provide plotting options such as switching to a log(time) axis and toggling between various plot elements. 
 
 Under the 'Statistics' subpanel, users can apply a statistical model to their data to determine whether the deuterium uptake curves of States A and B are statistically different at a particular alpha value.
 
 Deuteros 2.0 offers two models: 'Global' and 'Peptide'.
 
-#### Global filter:
+##### Global filter:
 The global filter was taken from Hageman & Weis, 2019. Anal Chem, 91, 13, 8008-8016. The global filter calculates confidence intervals around 0 (no difference) using the pooled standard deviation calculated individually for States A and B for all timepoints. Peptides with an absolute uptake difference (DU_B-DU_A) of less than the absolute confidence interval (in Daltons) are regarded as not significant. The polarity of the uptake difference (positive/negative) is used to classify the peptide as exhibiting deprotection or protection due to the pertubation introduced in State B. 
 
 #### Peptide filter: 
@@ -97,14 +97,14 @@ Selecting the peptide filter will spawn the 'Peptide Statistics' window which de
 
 ![statistics_window](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/statistics_window.png)
 
-#### Global Plots Tab
+##### Global Plots Tab
 
 The global plots tab contains three main visualisation facilities:
 1. Coverage plot
 2. Advanced plots (plots with statistics)
 3. Export to molecular graphics
 
-#### Coverage Plot
+##### Coverage Plot
 The coverage plot can generate linear graphical representations of the peptide ensemble for States A and B. The following controls are included:
 
 ```Plot type:
@@ -135,7 +135,7 @@ Plot          Generate plot
 Export        Spawn window for saving plot as figure
 ```
 
-#### Advanced Plot
+##### Advanced Plot
 The Advanced Plot section generates one of three major plot types: 
 1. Woods plot
 2. Butterfly plot
@@ -262,7 +262,7 @@ Data can be exported from Waters DynamX software in two formats - cluster and st
 
 Deuteros 2.0 imports data in the cluster file, which contains replicate-level data and alternative charge states for each peptide timepoint (e.g. Raw Cluster data table tab. The cluster data is converted to a state-like format using a custom algorithm which also filters out alternative charge states. The output from this is a state-like representation of the original data which contains no contributions by alternative charge states and which retains the original replicate values (e.g. State A and State B data table tab). For differential comparisons, custom functions extract only the common peptides between State A and B, followed by calculation of the difference between the two states (in the direction B-A). 
 
-### Output Figures
+#### Output Figures
 
 ![toolbar](https://github.com/andymlau/Deuteros_2.0/blob/master/Screenshots/toolbar.png)
 
@@ -271,7 +271,7 @@ All figures generated and exported from Deuteros 2.0 are vector images and can b
 - Copy as image
 - Copy as vector - this can be pasted directly into your vector image software
 
-### Examples
+#### Examples
 The following test files have been supplied in this repository in ```/builds/examples/```
 ```
 backExchange.csv      Cluster file contains 1 protein with 3 states: Bound, Unbound and Control, residue start and end are 1 and 90 respectively.

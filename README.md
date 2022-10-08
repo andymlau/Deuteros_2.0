@@ -37,16 +37,9 @@ Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-lev
 
 ## Installation
 
-Deuteros 2.0 can be installed by using one of the zipped installers (`.app.zip` for MacOS and `.exe.zip` for Windows). The installer will need to be unzipped before they can be run.
-The app requires the MATLAB Runtime library - if this is not found on your machine, a copy will be downloaded and installed automatically.
+To install a version of Deuteros, download the [latest](https://github.com/andymlau/Deuteros_2.0/releases/latest) release from the Github sidebar. 
 
-## Data input and compatibility
-
-The intended input to Deuteros 2.0 is the 'cluster' file that is output from Waters DynamX instrumentation, while the original Deuteros used 'state' and 'difference' files from DynamX. The cluster file contains peptide deuterium uptake data at the replicate level for all proteins and states held within a DynamX session file. 
-
-Deuteros 2.0 is not compatible with output data types from other vendors such as instruments from Thermo Fisher Scientific, however as the cluster file is a readable comma separated values (csv) format, providing users can format their data into a suitable format, this file would be readable by Deuteros 2.0. The format of the cluster input file can seen in the provided example.
-
-In v2.3.1, a conversion tool was added to format HDExaminer files into the DynamX cluster format. A standalone version is also available here as a [Colab notebook](https://github.com/andymlau/File-conversion-for-HDX).
+If the system running Deuteros already has an up to date version of MATLAB, run the non-installer files (after unzipping), else use the installers for mac or windows to install a copy of the runtime automatically. 
 
 ## Usage
 
@@ -56,6 +49,14 @@ In v2.3.1, a conversion tool was added to format HDExaminer files into the Dynam
 4. Press ```Import``` Note: depending on the cluster file size, import may take a while to complete. The 'Peptide Tree' and summary box in the top right of Deuteros 2.0 will populate when import is complete.
 
 The summary box contains a basic summary of the peptide data within states A and B, including the number of timepoints, whether back-exchange controls have been applied and if so, their statistics, details of the peptide population, replicate quality, etc. This summary follows the guidelines listed in Masson et al. 2019. Nature Methods, 16, 595-602 and should be prepared and included with any HDX-MS results.
+
+## Data input and compatibility
+
+The intended input to Deuteros 2.0 is the 'cluster' file that is output from Waters DynamX instrumentation, while the original Deuteros used 'state' and 'difference' files from DynamX. The cluster file contains peptide deuterium uptake data at the replicate level for all proteins and states held within a DynamX session file. 
+
+Deuteros 2.0 is not compatible with output data types from other vendors such as instruments from Thermo Fisher Scientific, however as the cluster file is a readable comma separated values (csv) format, providing users can format their data into a suitable format, this file would be readable by Deuteros 2.0. The format of the cluster input file can seen in the provided example.
+
+In v2.3.1, a conversion tool was added to format HDExaminer files into the DynamX cluster format. A standalone version is also available here as a [Colab notebook](https://github.com/andymlau/File-conversion-for-HDX).
 
 ### Back-exchange correction
 

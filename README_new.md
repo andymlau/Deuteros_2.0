@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/andymlau/Deuteros_2.0">
-    <img src="images/logo.svg" alt="Logo" width="200" height="200">
+    <img src="images/logo.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Deuteros 2.0</h3>
@@ -11,7 +11,7 @@
     Deuteros is an app designed for analysing and visualising data from hydrogen deuterium exchange mass spectrometry (HDX-MS) experiments, including quickly analysing peptide-level uptake kinetics, differential analysis, statistical testing via Woods and Volcano plots, back exchange correction and exporting to molecular graphics.
     <br />
     <br />
-    <a href="https://github.com/andymlau/Deuteros_2.0/releases"><strong>Releases</strong></a>
+    <a href="https://github.com/andymlau/Deuteros_2.0/releases">Releases</a>
     ·
     <a href="https://github.com/andymlau/Deuteros_2.0/wiki"><strong>Wiki & Tutorials »</strong></a>
     <br />
@@ -24,34 +24,35 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
     </li>
-    <li><a href="#citation">Citation</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
-        <li><a href="#usage">Usage</a></li>
       </ul>
     </li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
 ## About The Project
 
-This repository is for the second iteration of Deuteros, Deuteros 2.0, which greatly improved on features set out in the first version. 
+This repo is for the second iteration of Deuteros, Deuteros 2.0, which greatly improved on features set out in the first version. As Deuteros was developed during my PhD which ended in 2019, the app is no longer actively maintained and feature requests/bug fixes might take some time to be implemented. 
 
-Note: As Deuteros was developed during my PhD which ended in 2019, the app is no longer actively maintained and feature requests/bug fixes might take some time to be implemented. 
+The original Deuteros can be found [here](), as well as its reference, [here](). 
 
-The original Deuteros can be found [here](https://github.com/andymlau/Deuteros), as well as its reference, [here](https://academic.oup.com/bioinformatics/article/35/17/3171/5288775). 
-
-## Citation
+## Reference
 
 If Deuteros was helpful for your work, please cite the following paper:
 
-- *Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677*.
+- Lau, A. M., Claesen, J., Hansen, K., Politis, A. 2021. Deuteros 2.0: Peptide-level significance testing of data from hydrogen deuterium exchange mass spectrometry. Bioinformatics, btaa677, https://doi.org/10.1093/bioinformatics/btaa677.
 
 ## Getting Started
 
@@ -69,9 +70,16 @@ There are two types of applications/executables provided (`XXXX`: version, `OS`:
 
 Unzip and run 1. if your system already has an up to date version of MATLAB (2022b) installed and use 2. otherwise, as the installer will automatically download and install the MATLAB Runtime needed to run Deuteros 2.0.
 
-### Usage
+## Usage
 
-For guides on how to use Deuteros, check out the [wiki](https://github.com/andymlau/Deuteros_2.0/wiki) pages.
+#### Input data
+
+The intended input to Deuteros 2.0 is the DynamX "cluster" `csv` file. The cluster file contains peptide deuterium uptake data at the replicate level for all proteins and states that were exported from a DynamX session. 
+
+In v2.3.1, a file conversion tool was added to support re-formating HDExaminer files into the "cluster" format. A standalone tool is also available as a [Colab notebook](https://github.com/andymlau/File-conversion-for-HDX).
+
+
+
 
 ## FAQ
 1. _Is Deuteros 2.0 free to use?_  
@@ -95,15 +103,12 @@ As the DynamX cluster output does not include ion mobility metrics regardless of
 
 ## License
 
-Distributed under the Apache-2.0 license. See the `LICENSE` file for more information.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-To report bugs, please use the [issues](https://github.com/andymlau/Deuteros_2.0/issues) page, otherwise you can contact me at: andy.m.lau (at) ucl.ac.uk.
+Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
-When reporting a bug, please include the following information: 
+Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
 
-- Release version
-- Operating system (Win/Mac)
-- Error description (if any)
-- Additionally if possible, please provide the input file that causes the error, or a snippet of the file if that's not possible
+## Acknowledgments

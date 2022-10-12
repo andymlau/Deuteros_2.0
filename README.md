@@ -39,6 +39,8 @@
   </ol>
 </details>
 
+<img width="1334" alt="uptake_tab" src="https://user-images.githubusercontent.com/25254365/195334637-5b1328c8-8c4c-4bf6-afca-19bbb9f924ea.png">
+
 ## About The Project
 
 This repository is for the second iteration of Deuteros, Deuteros 2.0, which greatly improved on features set out in the first version. 

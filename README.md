@@ -5,8 +5,6 @@
     <img src="images/logo.svg" alt="Logo" width="200" height="200">
   </a>
 
-<h3 align="center">Deuteros 2.0</h3>
-
   <p align="center">
     Deuteros is an app designed for analysing and visualising data from hydrogen deuterium exchange mass spectrometry (HDX-MS) experiments, including quickly analysing peptide-level uptake kinetics, differential analysis, statistical testing via Woods and Volcano plots, back exchange correction and exporting to molecular graphics.
     <br />
